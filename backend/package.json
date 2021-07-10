@@ -1,0 +1,39 @@
+{
+	"name": "socmed",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start:dev": "ts-node-dev --respawn src/index.ts"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@avidian/extras": "^0.0.5",
+		"@prisma/client": "^2.26.0",
+		"@types/bcrypt": "^5.0.0",
+		"@types/cookie-parser": "^1.4.2",
+		"@types/cors": "^2.8.12",
+		"@types/express": "^4.17.13",
+		"@types/lodash": "^4.14.171",
+		"@types/md5": "^2.3.1",
+		"@types/node": "^16.3.0",
+		"@types/passport": "^1.0.7",
+		"@types/passport-http-bearer": "^1.0.37",
+		"bcrypt": "^5.0.1",
+		"cookie-parser": "^1.4.5",
+		"cors": "^2.8.5",
+		"dayjs": "^1.10.6",
+		"express": "^4.17.1",
+		"express-async-errors": "^3.1.1",
+		"express-validator": "^6.12.0",
+		"md5": "^2.3.0",
+		"passport": "^0.4.1",
+		"passport-http-bearer": "^1.0.1",
+		"prisma": "2.26.0",
+		"ts-node": "^10.0.0",
+		"ts-node-dev": "^1.1.8",
+		"typescript": "^4.3.5"
+	}
+}

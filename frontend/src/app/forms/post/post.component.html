@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+<div class="container">
+	<h1>{{ mode }} Post</h1>
+	<form (ngSubmit)="submit()">
+		<p>
+			<mat-form-field appearance="standard" class="w-100">
+				<mat-label>Title</mat-label>
+				<input
+					type="text"
+					matInput
+					placeholder="Title"
+					[(ngModel)]="post.title"
+					name="title"
+					[disabled]="processing"
+				/>
+			</mat-form-field>
+		</p>
+		<p>
+			<mat-form-field appearance="standard" class="w-100">
+				<mat-label>Content</mat-label>
+				<textarea
+					matInput
+					placeholder="Content"
+					[(ngModel)]="post.content"
+					name="content"
+					[disabled]="processing"
+				></textarea>
+			</mat-form-field>
+		</p>
+		<p>
+			<button
+				type="submit"
+				mat-raised-button
+				color="primary"
+				[disabled]="processing"
+			>
+				Submit
+			</button>
+		</p>
+	</form>
+</div>

@@ -1,0 +1,58 @@
+<mat-card class="login-container">
+	<mat-card class="login-pane">
+		<mat-card-header>
+			<mat-card-title>Login</mat-card-title>
+			<mat-card-subtitle>
+				Please fill in your credentials below.
+			</mat-card-subtitle>
+		</mat-card-header>
+		<form (ngSubmit)="submit()">
+			<mat-card-content>
+				<p class="form-group">
+					<mat-form-field appearance="standard" class="w-100">
+						<mat-label>Email Address</mat-label>
+						<input
+							type="email"
+							matInput
+							placeholder="Email Address"
+							[(ngModel)]="user.email"
+							name="email"
+							[disabled]="processing"
+						/>
+					</mat-form-field>
+				</p>
+				<p class="form-group">
+					<mat-form-field appearance="standard" class="w-100">
+						<mat-label>Password</mat-label>
+						<input
+							type="password"
+							matInput
+							placeholder="Password"
+							[(ngModel)]="user.password"
+							name="password"
+							[disabled]="processing"
+						/>
+					</mat-form-field>
+				</p>
+			</mat-card-content>
+			<mat-card-actions class="form-actions">
+				<button
+					type="submit"
+					mat-raised-button
+					color="primary"
+					[disabled]="processing"
+				>
+					Submit
+				</button>
+				<a
+					routerLink="/register"
+					mat-button
+					color="accent"
+					[disabled]="processing"
+				>
+					Register
+				</a>
+			</mat-card-actions>
+		</form>
+	</mat-card>
+</mat-card>

@@ -1,0 +1,27 @@
+.container {
+	width: 90%;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 3rem;
+}
+
+.card-title-buttons {
+	position: absolute;
+	right: 6px;
+	top: 10px;
+	display: flex;
+	justify-content: center;
+}
+
+.card-title-button {
+	margin-left: 0.25rem;
+	margin-right: 0.25rem;
+}
+
+.buttons {
+	display: flex;
+}
+
+.refresh {
+	margin-left: auto;
+}

@@ -1,0 +1,20 @@
+.login-container {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+}
+
+.login-pane {
+	min-width: 400px;
+}
+
+.form-group {
+	margin-left: 1rem;
+	margin-right: 1rem;
+}
+
+.form-actions {
+	margin-left: 0.75rem;
+}

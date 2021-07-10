@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+	<button mat-button routerLink="/posts">
+		<mat-icon>home</mat-icon>
+		{{ title }}
+	</button>
+
+	<span class="fill-remaining-space"></span>
+	<div fxLayout="row" fxShow="false" fxShow.gt-sm>
+		<button type="button" mat-button (click)="logout()">
+			<mat-icon>logout</mat-icon>
+			Logout
+		</button>
+	</div>
+	<button
+		mat-button
+		[mat-menu-trigger-for]="menu"
+		fxHide="false"
+		fxHide.gt-sm
+	>
+		<mat-icon>menu</mat-icon>
+	</button>
+</mat-toolbar>
+<mat-menu x-position="before" #menu="matMenu">
+	<button type="button" mat-menu-item (click)="logout()">
+		<mat-icon>logout</mat-icon>
+		Logout
+	</button>
+</mat-menu>

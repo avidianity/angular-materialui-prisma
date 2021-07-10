@@ -1,0 +1,173 @@
+<app-navbar></app-navbar>
+<div class="container">
+	<div class="buttons mb-3">
+		<a mat-mini-fab color="accent" routerLink="/posts/add">
+			<mat-icon>add</mat-icon>
+		</a>
+		<button mat-mini-fab color="basic" class="refresh" (click)="refresh()">
+			<mat-icon>refresh</mat-icon>
+		</button>
+	</div>
+	<mat-card *ngFor="let post of posts" class="mb-3">
+		<mat-card-header>
+			<mat-card-title>
+				{{ post.title }}
+				<div
+					class="card-title-buttons"
+					*ngIf="post.userId === user?.id"
+				>
+					<a
+						[routerLink]="['/posts', post.id, 'edit']"
+						class="card-title-button"
+						mat-mini-fab
+						color="primary"
+						title="Edit"
+					>
+						<mat-icon>edit</mat-icon>
+					</a>
+					<button
+						class="card-title-button"
+						mat-mini-fab
+						color="warn"
+						title="Delete"
+						(click)="removePost(post)"
+					>
+						<mat-icon>delete</mat-icon>
+					</button>
+				</div>
+			</mat-card-title>
+			<mat-card-subtitle>{{ post.user?.name }}</mat-card-subtitle>
+			<mat-card-subtitle>{{
+				post.updatedAt | date: 'MMMM d, y hh:mm a'
+			}}</mat-card-subtitle>
+		</mat-card-header>
+		<mat-card-content>
+			<p class="ml-1">{{ post.content }}</p>
+		</mat-card-content>
+		<mat-card-content
+			*ngIf="commentMode === 'Add' && data.comment.postId === post.id"
+		>
+			<form (ngSubmit)="submitComment()">
+				<p class="px-1">
+					<mat-form-field appearance="standard" class="w-100">
+						<textarea
+							matInput
+							placeholder="Content"
+							[(ngModel)]="data.comment.content"
+							name="content"
+							[disabled]="processingComment"
+						></textarea>
+					</mat-form-field>
+				</p>
+				<p>
+					<button
+						type="submit"
+						mat-raised-button
+						color="accent"
+						[disabled]="processingComment"
+						class="mx-1"
+					>
+						Save
+					</button>
+					<button
+						mat-raised-button
+						color="basic"
+						[disabled]="processingComment"
+						(click)="cancelEdit()"
+						class="mx-1"
+					>
+						Cancel
+					</button>
+				</p>
+			</form>
+		</mat-card-content>
+		<button
+			type="button"
+			mat-mini-fab
+			color="basic"
+			(click)="addComment(post)"
+			*ngIf="commentMode === 'View'"
+		>
+			<mat-icon>comment</mat-icon>
+		</button>
+		<mat-card-footer *ngIf="post.comments" class="p-1">
+			<mat-card class="my-1" *ngFor="let comment of post.comments">
+				<mat-card-header>
+					<mat-card-title [style]="{ fontSize: '14px' }">
+						{{ comment.user?.name }}
+						<div
+							class="card-title-buttons"
+							*ngIf="comment.userId === user?.id"
+						>
+							<button
+								class="card-title-button"
+								mat-mini-fab
+								color="primary"
+								title="Edit"
+								(click)="editComment(comment)"
+							>
+								<mat-icon>edit</mat-icon>
+							</button>
+							<button
+								class="card-title-button"
+								mat-mini-fab
+								color="warn"
+								title="Delete"
+								(click)="removeComment(comment)"
+							>
+								<mat-icon>delete</mat-icon>
+							</button>
+						</div>
+					</mat-card-title>
+					<mat-card-subtitle>
+						{{ comment.updatedAt | date: 'MMMM d, y hh:mm a' }}
+					</mat-card-subtitle>
+				</mat-card-header>
+				<mat-card-content *ngIf="data.comment.id !== comment.id">
+					<p class="ml-1">
+						{{ comment.content }}
+					</p>
+				</mat-card-content>
+				<mat-card-content
+					*ngIf="
+						commentMode === 'Edit' && data.comment.id === comment.id
+					"
+				>
+					<form (ngSubmit)="submitComment()">
+						<p class="px-1">
+							<mat-form-field appearance="standard" class="w-100">
+								<textarea
+									matInput
+									placeholder="Content"
+									[(ngModel)]="comment.content"
+									name="content"
+									[disabled]="processingComment"
+								></textarea>
+							</mat-form-field>
+						</p>
+						<p>
+							<button
+								type="submit"
+								mat-raised-button
+								color="accent"
+								[disabled]="processingComment"
+								class="mx-1"
+							>
+								Save
+							</button>
+							<button
+								mat-raised-button
+								color="basic"
+								[disabled]="processingComment"
+								(click)="cancelEdit()"
+								class="mx-1"
+							>
+								Cancel
+							</button>
+						</p>
+					</form>
+				</mat-card-content>
+			</mat-card>
+		</mat-card-footer>
+	</mat-card>
+</div>
